@@ -1,0 +1,104 @@
+-- database: c:\python\sql\test.db
+
+-- ファイル全体を実行するにはウィンドウ右上の▷を押してください。
+
+-------------------------------------------------------------
+-- 文の最後にはセミコロンを置く
+-- データ型: 数値, テキスト, 日付
+
+-------------------------------------------------------------
+-- CREATE
+
+-------------------------------------------------------------
+-- INSERT
+
+-------------------------------------------------------------
+
+-- SELECT
+-- 指定したカラムとテーブル
+SELECT name FROM shoppinglist;
+
+-- 複数カラム(スペースなし)とテーブル
+SELECT name,price FROM shoppinglist;
+
+-- 全てのカラムと指定したテーブル
+SELECT * FROM shoppinglist;
+
+-- WHERE
+    -- =, <, >, <=, >=, !=, <>
+    -- price = 100のみ
+SELECT * FROM shoppinglist WHERE price = 100;
+
+    -- price <= 100のみ
+SELECT * FROM shoppinglist WHERE price <= 100;
+
+    -- price >= 100 AND price <= 300
+SELECT * FROM shoppinglist
+WHERE price >= 100 AND price <= 300;
+
+    -- price BETWEEN a AND b
+SELECT * FROM shoppinglist
+WHERE price BETWEEN 200 AND 350;
+-- AND, OR, NOT, BETWEEN a AND b
+
+    -- name LIKE "%納豆%"
+SELECT * FROM shoppinglist
+WHERE name LIKE "%納豆%";
+    -- "%納豆%", "納豆%", "納豆%"
+
+    -- NOT price = 100
+SELECT * FROM shoppinglist
+WHERE NOT price = 100;
+
+    -- price IS NULL
+SELECT * FROM shoppinglist
+WHERE price IS NULL;
+
+    -- price IS NOT NULL
+SELECT * FROM shoppinglist 
+WHERE price IS NOT NULL;
+
+-- ORDER BY price ASC
+SELECT * FROM shoppinglist
+ORDER BY price ASC; -- ASC 昇順 DESC 降順
+
+-- WHERE と ORDER BY
+SELECT * FROM shoppinglist
+WHERE name = "鶏肉"
+ORDER BY price ASC;
+
+-- LIMIT
+SELECT * FROM shoppinglist
+LIMIT 4;
+
+-- SELECT DISTINCT
+SELECT DISTINCT(price) from shoppinglist;
+
+-- Calculation: +, -, *, /
+SELECT name,price * 1.08 FROM shoppinglist;
+
+-- Calculation: sum, ave, count, max, min
+SELECT sum(price) FROM shoppinglist;
+
+SELECT avg(price) FROM shoppinglist;
+
+SELECT count(price) FROM shoppinglist;
+
+SELECT max(price) FROM shoppinglist;
+
+SELECT min(price) FROM shoppinglist;
+
+-- GRUOP BY
+SELECT sum(price),date FROM shoppinglist
+GROUP BY date;
+
+-- HAVING
+SELECT sum(price),date FROM shoppinglist
+GROUP BY date
+HAVING sum(price) > 150;
+
+-------------------------------------------------------------
+-- UPDATE
+
+-------------------------------------------------------------
+-- DELETE
